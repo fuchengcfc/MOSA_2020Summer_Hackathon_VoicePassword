@@ -42,7 +42,7 @@ public class Comparer {
 		
 		System.out.println(score);
 		
-		if (score > 0.8) {
+		if (score > 0.1) {
 			return true;
 		}
 		else {

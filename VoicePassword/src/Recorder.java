@@ -39,7 +39,7 @@ public class Recorder {
 		};
 		
 		thread.start();
-		Thread.sleep(3000);
+		Thread.sleep(8000);
 		targetLine.stop();
 		targetLine.close();
 		
