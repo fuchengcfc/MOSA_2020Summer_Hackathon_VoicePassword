@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class LoginWindow {
@@ -47,9 +49,20 @@ public class LoginWindow {
 		frmLogIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton btnNewButton = new JButton("Start");
-
-		
-		JButton btnNewButton_1 = new JButton("Stop");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Recorder.record("try.wav");
+				boolean checkTwoFiles = Comparer.compareTwoFile("password.wav", "try.wav");
+				if (!checkTwoFiles) {
+					JOptionPane.showMessageDialog(null,"unload unsuccessful, please try again");
+					System.out.println("Please try again");
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"unload successful");
+					System.out.println("unload successful");
+				}
+			}
+		});
 		
 		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("Please sing to log in");
 		GroupLayout groupLayout = new GroupLayout(frmLogIn.getContentPane());
@@ -58,25 +71,21 @@ public class LoginWindow {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(82)
-							.addComponent(btnNewButton)
-							.addGap(83)
-							.addComponent(btnNewButton_1))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(135)
-							.addComponent(lblNewJgoodiesLabel)))
-					.addContainerGap(135, Short.MAX_VALUE))
+							.addComponent(lblNewJgoodiesLabel))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(165)
+							.addComponent(btnNewButton)))
+					.addContainerGap(183, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(63, Short.MAX_VALUE)
 					.addComponent(lblNewJgoodiesLabel)
-					.addGap(39)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton)
-						.addComponent(btnNewButton_1))
-					.addGap(110))
+					.addGap(40)
+					.addComponent(btnNewButton)
+					.addGap(109))
 		);
 		frmLogIn.getContentPane().setLayout(groupLayout);
 	}

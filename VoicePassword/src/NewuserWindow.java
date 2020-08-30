@@ -5,6 +5,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
@@ -48,8 +50,12 @@ public class NewuserWindow {
 		frmNewUser.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton btnNewButton = new JButton("Record");
-		
-		JButton btnNewButton_1 = new JButton("Stop");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Recorder.record("password.wav");
+				JOptionPane.showMessageDialog(null, "Password Recording Success");
+			}
+		});
 		
 		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("Please record your password");
 		
@@ -61,33 +67,28 @@ public class NewuserWindow {
 		});
 		GroupLayout groupLayout = new GroupLayout(frmNewUser.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(106)
-							.addComponent(btnNewButton)
-							.addGap(73)
-							.addComponent(btnNewButton_1))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(130)
-							.addComponent(lblNewJgoodiesLabel)))
-					.addContainerGap(121, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(169, Short.MAX_VALUE)
+					.addGap(130)
+					.addComponent(lblNewJgoodiesLabel)
+					.addContainerGap(136, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(157, Short.MAX_VALUE)
 					.addComponent(btnNewButton_2)
 					.addGap(166))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(175)
+					.addComponent(btnNewButton)
+					.addContainerGap(184, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(68, Short.MAX_VALUE)
 					.addComponent(lblNewJgoodiesLabel)
-					.addGap(47)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_1)
-						.addComponent(btnNewButton))
-					.addGap(59)
+					.addGap(45)
+					.addComponent(btnNewButton)
+					.addGap(61)
 					.addComponent(btnNewButton_2)
 					.addContainerGap())
 		);
