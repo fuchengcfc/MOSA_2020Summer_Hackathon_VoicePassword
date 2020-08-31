@@ -5,6 +5,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
@@ -52,15 +53,34 @@ public class LoginWindow {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Recorder.record("try.wav");
+				String key = "Mary has one cat";
+				//String decryptedFileName1 = "password.wav.encrypted";
+				//String decryptedFileName2 = "try.wav.encrypted";
+				File encryptedFile1 = new File("password.wav.encrypted");
+				//File encryptedFile2 = new File("try.wav.encrypted");
+				File decryptedPassword = new File("password.wav");
+				//File decryptedTry = new File("try.wav");
+				try {
+					AesEncryption.decrypt(key, encryptedFile1, decryptedPassword);
+					//AesEncryption.decrypt(key, encryptedFile2, decryptedTry);
+				} catch (CryptoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				boolean checkTwoFiles = Comparer.compareTwoFile("password.wav", "try.wav");
 				if (!checkTwoFiles) {
-					JOptionPane.showMessageDialog(null,"unload unsuccessful, please try again");
-					System.out.println("Please try again");
+					JOptionPane.showMessageDialog(null,"Unsuccessful. Please try again");
+					//System.out.println("Please try again");
 				}
 				else {
-					JOptionPane.showMessageDialog(null,"unload successful");
-					System.out.println("unload successful");
+					JOptionPane.showMessageDialog(null,"Successful! You're logged in.");
+					//System.out.println("unload successful");
 				}
+				decryptedPassword.delete();
+				//decryptedTry.delete();
+				//encryptedFile2.delete();
+				File login = new File("try.wav");
+				login.delete();		
 			}
 		});
 		
