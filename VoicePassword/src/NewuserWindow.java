@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 
 public class NewuserWindow {
@@ -54,6 +55,8 @@ public class NewuserWindow {
 			public void actionPerformed(ActionEvent e) {
 				Recorder.record("password.wav");
 				JOptionPane.showMessageDialog(null, "Password Recording Success");
+				File pw= new File("password.wav");
+				pw.delete();
 			}
 		});
 		
