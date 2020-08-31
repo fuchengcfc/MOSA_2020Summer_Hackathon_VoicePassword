@@ -30,6 +30,16 @@ public class Recorder {
 				File audioFile = new File(filename);
 				try {
 					AudioSystem.write(audioStream, AudioFileFormat.Type.WAVE, audioFile);
+					String key = "Mary has one cat";
+					String encryptedFileName = filename + ".encrypted";
+					File encryptedFile = new File(encryptedFileName);
+					try {
+						AesEncryption.encrypt(key, audioFile, encryptedFile);
+						//audioFile.delete();
+					} catch (CryptoException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -54,11 +64,7 @@ public class Recorder {
 
 		}
 		
-		
-		
-		
-		
-		
+
 		
 	}
 	
